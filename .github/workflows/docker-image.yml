@@ -1,0 +1,40 @@
+name: Docker Image CI
+
+on:
+  pull_request:
+    branches:
+      - master
+  release:
+    types:
+    - created
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build the Docker image and push it to GitHub Package Registry
+      run: |
+        # This is a multi-line bash script, we can use bash commands
+        echo "hello log"
+        
+        # This is a default environment variable set to my GitHub username
+        echo "The GitHub user is " ${GITHUB_ACTOR}
+        
+        # Convert the repo name variable to lowercase because Docker expects lower case registry name
+        REPO=$(echo ${GITHUB_REPOSITORY} | tr "[:upper:]" "[:lower:]")
+        echo "The repository name is " ${REPO}
+        
+        # Set version
+        VERSION=$(date +%s)
+        
+        # Login into docker with my username and GitHub token
+        echo ${{ secrets.GITHUB_TOKEN }} | docker login https://docker.pkg.github.com -u ${GITHUB_ACTOR} --password-stdin
+        # docker login docker.pkg.github.com --username ${GITHUB_ACTOR} --password ${{ secrets.GITHUB_TOKEN }}
+        
+        # Build the Docker container
+        docker build . --file Dockerfile --tag docker.pkg.github.com/${REPO}/app:${VERSION}
+        
+        # Push the Docker container into GitHub packages
+        docker push docker.pkg.github.com/${REPO}/app:${VERSION}
