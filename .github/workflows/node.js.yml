@@ -27,6 +27,7 @@ jobs:
         node-version: ${{ matrix.node-version }}
       
     - uses: actions/cache@v2
+      if: runner.os != 'Windows'
       with:
        path: ~/.npm
        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
