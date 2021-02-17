@@ -8,7 +8,7 @@ on:
   pull_request:
     paths:
       - '.github/workflows/query-list.yml'
-      - 'misc/scripts/generate-code-scanning-query-list.py'
+      - 'https://github.com/github/codeql/tree/main/misc/scripts/generate-code-scanning-query-list.py'
 
 jobs:
   build:
