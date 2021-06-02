@@ -1,0 +1,35 @@
+name: "Code Scanning - Diagnostic"
+
+on: [push, pull_request]
+
+jobs:
+  CodeQL-Build:
+    # CodeQL runs on ubuntu-latest, windows-latest, and macos-latest
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      # Initializes the CodeQL tools for scanning.
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v1
+        with:
+          tools: https://github.com/dsp-testing/henrymercer-diagnostic-testing/releases/download/codeql-bundle-20210528/codeql-bundle-linux64.tar.gz
+
+      # Autobuild attempts to build any compiled languages (C/C++, C#, or Java).
+      # If this step fails, then you should remove it and run the build manually (see below).
+      - name: Autobuild
+        uses: github/codeql-action/autobuild@v1
+        
+      - run: mkdir results
+
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v1
+        with:
+          output: results
+        
+      - uses: actions/upload-artifact@v2
+        with:
+          name: sarif-results
+          path: results
