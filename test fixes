@@ -1,0 +1,32 @@
+document.write(window.location.search);
+/*
+This ^^ causes an alert that won't be reported in the PR because
+it was already in the code.
+*/
+
+// 2
+require('crypto').createCipheriv('aes-256-cfb', '0123456789bbbbbb0123456789bbbbbb', '0123456789bbbbbb');
+
+
+// 3
+require('crypto').createCipheriv('aes-256-cfb', '0123456789cccccc0123456789cccccc', '0123456789cccccc');
+
+
+// 4
+require('crypto').createCipheriv('aes-256-cfb', '0123456789dddddd0123456789dddddd', '0123456789dddddd');
+
+
+// 5
+require('crypto').createCipheriv('aes-256-cfb', '0123456789eeeeee0123456789eeeeee', '0123456789eeeeee');
+
+
+// 6
+require('crypto').createCipheriv('aes-256-cfb', '0123456789ffffff0123456789ffffff', '0123456789ffffff');
+
+
+// 7
+require('crypto').createCipheriv('aes-256-cfb', '0123456789gggggg0123456789gggggg', '0123456789gggggg');
+
+
+// 8
+require('crypto').createCipheriv('aes-256-cfb', '0123456789hhhhhh0123456789hhhhhh', '0123456789hhhhhh');
