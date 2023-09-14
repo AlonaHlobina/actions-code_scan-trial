@@ -14,3 +14,9 @@ if (! module.parent) {
 module.exports = app
 
 console.log("Server running on port " + port);
+
+document.write("Hello, world!");
+
+document.write(window.location.search);
+
+document.write(window.location.search);
