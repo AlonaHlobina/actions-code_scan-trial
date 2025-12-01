@@ -23,7 +23,7 @@
   "author": "Edward Thomson <ethomson@microsoft.com>",
   "license": "MIT",
   "dependencies": {
-    "express": "^5.1.0"
+    "express": "^5.2.1"
   },
   "devDependencies": {
     "chai": "^6.2.0",
